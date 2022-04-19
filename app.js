@@ -1,18 +1,23 @@
 require('dotenv').config();
-const cors = require('cors')
 const express = require('express');
 const app = express();
 const { port, MONGO_URI } = process.env;
+const cors = require('cors')
+
+const tokenRouter = require('./app/routes/article.route');
+app.use('/token', tokenRouter);
+
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors()); 
 const APP = './app/routes'
-const nodes = ['user','article']
+// const nodes = ['admin','basic','board','game','todo','user']
+const nodes = ['basic','article','user','todo']
 for(const leaf of nodes){
   require(`${APP}/${leaf}.route`)({url:`/api/${leaf}`,app})
 }
-//const
+
 const corsOptions = {
   origin: 'http://localhost:3000',
   optionsSuccessStatus: 200 
@@ -37,3 +42,6 @@ app.get('/', (req, res) => {
 app.get('/api/now', cors(corsOptions),(req, res) => {
   res.json({"now":new Date().toLocaleString()})
 })
+
+
+
