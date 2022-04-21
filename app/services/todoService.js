@@ -1,4 +1,7 @@
+import db from '../models/index.js'
+
 export default function TodoService() {
+    const Todo = db.Todo
     return {
       addTodo(req, _res){
         console.log(' ### 진행 4: 노드서버에 진입함 '+ JSON.stringify(req.body))
@@ -13,5 +16,5 @@ export default function TodoService() {
           return todos
         })
       }
-    }
+    }// return
 }
