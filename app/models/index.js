@@ -1,7 +1,7 @@
 import dotenv from 'dotenv'
 import mongoose from 'mongoose'
-import UserModel from './userModel.js'
-import TodoModel from './todoModel.js'
+import UserModel from './User.js'
+import TodoModel from './Todo.js'
 mongoose.Promise = global.Promise
 
 const db = {}
